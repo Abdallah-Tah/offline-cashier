@@ -1,0 +1,79 @@
+{
+    "name": "amohamed/offline-cashier",
+    "description": "A Laravel package for managing offline and online subscriptions with support for cash, check, bank transfer, and Stripe payments",
+    "keywords": [
+        "laravel",
+        "subscription",
+        "billing",
+        "cashier",
+        "offline-payments",
+        "stripe"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "amohamed",
+            "email": "author@example.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "laravel/framework": "^10.0",
+        "laravel/cashier": "^14.0",
+        "stripe/stripe-php": "^10.0",
+        "dompdf/dompdf": "^2.0",
+        "spatie/laravel-permission": "^5.0",
+        "symfony/mailer": "^6.0",
+        "nesbot/carbon": "^2.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^8.0",
+        "mockery/mockery": "^1.5",
+        "nunomaduro/collision": "^7.0",
+        "phpstan/phpstan": "^1.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0"
+    },
+    "suggest": {
+        "ext-gd": "Required for PDF generation",
+        "ext-intl": "Required for currency formatting",
+        "league/omnipay": "Required for additional payment gateways"
+    },
+    "autoload": {
+        "psr-4": {
+            "AMohamed\\OfflineCashier\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AMohamed\\OfflineCashier\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AMohamed\\OfflineCashier\\OfflineCashierServiceProvider"
+            ],
+            "aliases": {
+                "OfflineCashier": "AMohamed\\OfflineCashier\\Facades\\OfflineCashier"
+            }
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
+        "analyse": "vendor/bin/phpstan analyse"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
