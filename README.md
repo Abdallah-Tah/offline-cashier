@@ -15,11 +15,11 @@ OfflineCashier is a Laravel package that provides subscription and payment manag
 
 ## Table of Contents
 
-1. [Installation](installation.md)
-2. [Configuration](configuration.md)
-3. [Basic Usage](basic-usage.md)
-4. [Payment Methods](payment-methods.md)
-5. [Events & Notifications](events-notifications.md)
-6. [Stripe Integration](stripe-integration.md)
-7. [Invoice Generation](invoice-generation.md)
-8. [Testing](testing.md) 
+1. [Installation](docs/installation.md)
+2. [Configuration](docs/configuration.md)
+3. [Basic Usage](docs/basic-usage.md)
+4. [Payment Methods](docs/payment-methods.md)
+5. [Events & Notifications](docs/events-notifications.md)
+6. [Stripe Integration](docs/stripe-integration.md)
+7. [Invoice Generation](docs/invoice-generation.md)
+8. [Testing](docs/testing.md)
