@@ -20,7 +20,7 @@
     "require": {
         "php": "^8.1",
         "laravel/framework": "^10.0 || ^11.0",
-        "laravel/cashier": "^14.0",
+        "laravel/cashier": "^15.0",
         "stripe/stripe-php": "^10.0",
         "dompdf/dompdf": "^2.0",
         "spatie/laravel-permission": "^5.0",
