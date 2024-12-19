@@ -35,7 +35,7 @@ class UpgradeForTeams extends Command
 
         $this->line('');
 
-        if (! $this->confirm('Proceed with the migration creation?', 'yes')) {
+        if (! $this->confirm('Proceed with the migration creation?', true)) {
             return;
         }
 
@@ -88,9 +88,7 @@ class UpgradeForTeams extends Command
             $base = "Setup teams migration already exists.\nFollowing file was found: ";
         }
 
-        return $base.array_reduce($existingMigrations, function ($carry, $fileName) {
-            return $carry."\n - ".$fileName;
-        });
+        return $base.array_reduce($existingMigrations, fn ($carry, $fileName) => $carry."\n - ".$fileName);
     }
 
     /**
@@ -103,9 +101,7 @@ class UpgradeForTeams extends Command
     {
         $matchingFiles = glob($this->getMigrationPath('*'));
 
-        return array_map(function ($path) {
-            return basename($path);
-        }, $matchingFiles);
+        return array_map(fn ($path) => basename($path), $matchingFiles);
     }
 
     /**

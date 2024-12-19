@@ -37,32 +37,29 @@ class Show extends Command
 
             $roles = $roleClass::whereGuardName($guard)
                 ->with('permissions')
-                ->when($teamsEnabled, function ($q) use ($team_key) {
-                    $q->orderBy($team_key);
-                })
-                ->orderBy('name')->get()->mapWithKeys(function ($role) use ($teamsEnabled, $team_key) {
-                    return [$role->name.'_'.($teamsEnabled ? ($role->$team_key ?: '') : '') => [
-                        'permissions' => $role->permissions->pluck('id'),
+                ->when($teamsEnabled, fn ($q) => $q->orderBy($team_key))
+                ->orderBy('name')->get()->mapWithKeys(fn ($role) => [
+                    $role->name.'_'.($teamsEnabled ? ($role->$team_key ?: '') : '') => [
+                        'permissions' => $role->permissions->pluck($permissionClass->getKeyName()),
                         $team_key => $teamsEnabled ? $role->$team_key : null,
-                    ]];
-                });
+                    ],
+                ]);
 
-            $permissions = $permissionClass::whereGuardName($guard)->orderBy('name')->pluck('name', 'id');
+            $permissions = $permissionClass::whereGuardName($guard)->orderBy('name')->pluck('name', $permissionClass->getKeyName());
 
-            $body = $permissions->map(function ($permission, $id) use ($roles) {
-                return $roles->map(function (array $role_data) use ($id) {
-                    return $role_data['permissions']->contains($id) ? ' ✔' : ' ·';
-                })->prepend($permission);
-            });
+            $body = $permissions->map(fn ($permission, $id) => $roles->map(
+                fn (array $role_data) => $role_data['permissions']->contains($id) ? ' ✔' : ' ·'
+            )->prepend($permission)
+            );
 
             if ($teamsEnabled) {
-                $teams = $roles->groupBy($team_key)->values()->map(function ($group, $id) {
-                    return new TableCell('Team ID: '.($id ?: 'NULL'), ['colspan' => $group->count()]);
-                });
+                $teams = $roles->groupBy($team_key)->values()->map(
+                    fn ($group, $id) => new TableCell('Team ID: '.($id ?: 'NULL'), ['colspan' => $group->count()])
+                );
             }
 
             $this->table(
-                array_merge([
+                array_merge(
                     isset($teams) ? $teams->prepend(new TableCell(''))->toArray() : [],
                     $roles->keys()->map(function ($val) {
                         $name = explode('_', $val);
@@ -70,8 +67,8 @@ class Show extends Command
 
                         return implode('_', $name);
                     })
-                        ->prepend('')->toArray(),
-                ]),
+                        ->prepend(new TableCell(''))->toArray(),
+                ),
                 $body->toArray(),
                 $style
             );
