@@ -28,6 +28,11 @@ use function Orchestra\Testbench\package_path;
 class DevToolCommand extends Command implements PromptsForMissingInput
 {
     /**
+     * Namespace prefix for Workbench environment.
+     */
+    protected string $workbenchNamespacePrefix = 'Workbench\\';
+
+    /**
      * Execute the console command.
      *
      * @return int
@@ -38,8 +43,8 @@ class DevToolCommand extends Command implements PromptsForMissingInput
 
         event(new InstallStarted($this->input, $this->output, $this->components));
 
-        $this->prepareWorkbenchDirectories($filesystem, $workingPath);
         $this->prepareWorkbenchNamespaces($filesystem, $workingPath);
+        $this->prepareWorkbenchDirectories($filesystem, $workingPath);
 
         if ($this->option('install') === true) {
             $this->call('workbench:install', [
@@ -109,6 +114,8 @@ class DevToolCommand extends Command implements PromptsForMissingInput
             ->handle(fn (array $content) => $this->appendScriptsToComposer(
                 $this->appendAutoloadDevToComposer($content, $filesystem), $filesystem
             ));
+
+        Workbench::flushCachedClassAndNamespaces();
     }
 
     /**
@@ -135,11 +142,23 @@ class DevToolCommand extends Command implements PromptsForMissingInput
             join_paths($workingPath, 'database', 'seeders', 'DatabaseSeeder.php')
         );
 
+        $workbenchSeederNamespacePrefix = rtrim(Workbench::detectNamespace('database/seeders') ?? 'Workbench\Database\Seeders\\', '\\');
+
+        $filesystem->replaceInFile([
+            '{{WorkbenchSeederNamespace}}',
+            '{{ WorkbenchSeederNamespace }}',
+            'Workbench\Database\Seeders',
+        ], [
+            $workbenchSeederNamespacePrefix,
+            $workbenchSeederNamespacePrefix,
+            $workbenchSeederNamespacePrefix,
+        ], join_paths($workingPath, 'database', 'seeders', 'DatabaseSeeder.php'));
+
         if ($filesystem->exists(join_paths($workingPath, 'database', 'factories', 'UserFactory.php'))) {
             $filesystem->replaceInFile([
                 'use Orchestra\Testbench\Factories\UserFactory;',
             ], [
-                'use Workbench\Database\Factories\UserFactory;',
+                \sprintf('use %sUserFactory;', Workbench::detectNamespace('database/factories') ?? 'Workbench\Database\Factories\\'),
             ], join_paths($workingPath, 'database', 'seeders', 'DatabaseSeeder.php'));
         }
     }
@@ -237,22 +256,28 @@ class DevToolCommand extends Command implements PromptsForMissingInput
             $content['autoload-dev']['psr-4'] = [];
         }
 
+        if (confirm('Prefix with `Workbench` namespace?', default: false) === false) {
+            $this->workbenchNamespacePrefix = '';
+        }
+
         $namespaces = [
-            'Workbench\\App\\' => 'workbench/app/',
-            'Workbench\\Database\\Factories\\' => 'workbench/database/factories/',
-            'Workbench\\Database\\Seeders\\' => 'workbench/database/seeders/',
+            'workbench/app/' => $this->workbenchNamespacePrefix.'App\\',
+            'workbench/database/factories/' => $this->workbenchNamespacePrefix.'Database\\Factories\\',
+            'workbench/database/seeders/' => $this->workbenchNamespacePrefix.'Database\\Seeders\\',
         ];
 
-        foreach ($namespaces as $namespace => $path) {
-            if (! \array_key_exists($namespace, $content['autoload-dev']['psr-4'])) {
+        $autoloads = array_flip($content['autoload-dev']['psr-4']);
+
+        foreach ($namespaces as $path => $namespace) {
+            if (! \array_key_exists($path, $autoloads)) {
                 $content['autoload-dev']['psr-4'][$namespace] = $path;
 
                 $this->components->task(\sprintf(
-                    'Added [%s] for [%s] to Composer', $namespace, $path
+                    'Added [%s] for [%s] to Composer', $namespace, './'.rtrim($path, '/')
                 ));
             } else {
                 $this->components->twoColumnDetail(
-                    \sprintf('Composer already contain [%s] namespace', $namespace),
+                    \sprintf('Composer already contains [%s] path assigned to [%s] namespace', './'.rtrim($path, '/'), $autoloads[$path]),
                     '<fg=yellow;options=bold>SKIPPED</>'
                 );
             }

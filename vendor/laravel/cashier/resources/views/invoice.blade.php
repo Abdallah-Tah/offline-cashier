@@ -49,9 +49,13 @@
 <div class="container">
     <table style="margin-left: auto; margin-right: auto;" width="100%">
         <tr valign="top">
-            <td width="160">
+            <td width="180">
                 <span style="font-size: 28px;">
-                    Receipt
+                    Invoice
+
+                    @if ($invoice->paid)
+                        <span style="color: #0c0; font-size: 20px;">(Paid)</span>
+                    @endif
                 </span>
 
                 <!-- Invoice Info -->
@@ -242,7 +246,7 @@
 
                             <tr>
                                 <td></td>
-                                <td colspan="{{ $invoice->hasTax() ? 3 : 2 }}" align="right">
+                                <td colspan="{{ $invoice->hasTax() ? 3 : 2 }}">
                                     @if ($coupon->isPercentage())
                                         {{ $coupon->name() }} ({{ $coupon->percentOff() }}% Off)
                                     @else
@@ -259,7 +263,7 @@
                     @unless ($invoice->isNotTaxExempt())
                         <tr>
                             <td></td>
-                            <td colspan="{{ $invoice->hasTax() ? 3 : 2 }}" align="right">
+                            <td colspan="{{ $invoice->hasTax() ? 3 : 2 }}">
                                 @if ($invoice->isTaxExempt())
                                     Tax is exempted
                                 @else

@@ -29,7 +29,9 @@ trait ManagesInvoices
     public function tab($description, $amount, array $options = [])
     {
         if ($this->isAutomaticTaxEnabled() && ! array_key_exists('price_data', $options)) {
-            throw new LogicException('When using automatic tax calculation, you need to define the "price_data" in the options.');
+            throw new LogicException(
+                'When using automatic tax calculation, you must include "price_data" in the provided options array.'
+            );
         }
 
         $this->assertCustomerExists();
@@ -160,10 +162,17 @@ trait ManagesInvoices
     {
         $this->assertCustomerExists();
 
+        $stripeCustomer = $this->asStripeCustomer();
+
         $parameters = array_merge([
             'automatic_tax' => $this->automaticTaxPayload(),
             'customer' => $this->stripe_id,
+            'currency' => $stripeCustomer->currency ?? config('cashier.currency'),
         ], $options);
+
+        if (isset($parameters['subscription'])) {
+            unset($parameters['currency']);
+        }
 
         if (array_key_exists('subscription', $parameters)) {
             unset($parameters['pending_invoice_items_behavior']);

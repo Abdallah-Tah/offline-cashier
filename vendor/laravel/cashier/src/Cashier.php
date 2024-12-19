@@ -19,14 +19,14 @@ class Cashier
      *
      * @var string
      */
-    const VERSION = '14.14.0';
+    const VERSION = '15.6.0';
 
     /**
      * The Stripe API version.
      *
      * @var string
      */
-    const STRIPE_VERSION = '2022-11-15';
+    const STRIPE_VERSION = '2023-10-16';
 
     /**
      * The base URL for the Stripe API.
@@ -41,13 +41,6 @@ class Cashier
      * @var callable
      */
     protected static $formatCurrencyUsing;
-
-    /**
-     * Indicates if Cashier migrations will be run.
-     *
-     * @var bool
-     */
-    public static $runsMigrations = true;
 
     /**
      * Indicates if Cashier routes will be registered.
@@ -125,11 +118,13 @@ class Cashier
      */
     public static function stripe(array $options = [])
     {
-        return new StripeClient(array_merge([
+        $config = array_merge([
             'api_key' => $options['api_key'] ?? config('cashier.secret'),
             'stripe_version' => static::STRIPE_VERSION,
             'api_base' => static::$apiBaseUrl,
-        ], $options));
+        ], $options);
+
+        return app(StripeClient::class, ['config' => $config]);
     }
 
     /**
@@ -171,18 +166,6 @@ class Cashier
         $moneyFormatter = new IntlMoneyFormatter($numberFormatter, new ISOCurrencies());
 
         return $moneyFormatter->format($money);
-    }
-
-    /**
-     * Configure Cashier to not register its migrations.
-     *
-     * @return static
-     */
-    public static function ignoreMigrations()
-    {
-        static::$runsMigrations = false;
-
-        return new static;
     }
 
     /**

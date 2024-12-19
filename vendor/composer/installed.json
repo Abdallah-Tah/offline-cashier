@@ -2076,50 +2076,51 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v14.14.0",
-            "version_normalized": "14.14.0.0",
+            "version": "v15.6.0",
+            "version_normalized": "15.6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier-stripe.git",
-                "reference": "46d8139cc4c4a53c70a56cbc8605c4503a429f4c"
+                "reference": "e7e96008b4df2a8dafefba512b3c54fe68c89770"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/46d8139cc4c4a53c70a56cbc8605c4503a429f4c",
-                "reference": "46d8139cc4c4a53c70a56cbc8605c4503a429f4c",
+                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/e7e96008b4df2a8dafefba512b3c54fe68c89770",
+                "reference": "e7e96008b4df2a8dafefba512b3c54fe68c89770",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "illuminate/console": "^9.21|^10.0",
-                "illuminate/contracts": "^9.21|^10.0",
-                "illuminate/database": "^9.21|^10.0",
-                "illuminate/http": "^9.21|^10.0",
-                "illuminate/log": "^9.21|^10.0",
-                "illuminate/notifications": "^9.21|^10.0",
-                "illuminate/pagination": "^9.21|^10.0",
-                "illuminate/routing": "^9.21|^10.0",
-                "illuminate/support": "^9.21|^10.0",
-                "illuminate/view": "^9.21|^10.0",
+                "illuminate/console": "^10.0|^11.0",
+                "illuminate/contracts": "^10.0|^11.0",
+                "illuminate/database": "^10.0|^11.0",
+                "illuminate/http": "^10.0|^11.0",
+                "illuminate/log": "^10.0|^11.0",
+                "illuminate/notifications": "^10.0|^11.0",
+                "illuminate/pagination": "^10.0|^11.0",
+                "illuminate/routing": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "illuminate/view": "^10.0|^11.0",
                 "moneyphp/money": "^4.0",
-                "nesbot/carbon": "^2.0",
-                "php": "^8.0",
-                "stripe/stripe-php": "^7.39|^8.0|^9.0|^10.0",
-                "symfony/http-kernel": "^6.0",
+                "nesbot/carbon": "^2.0|^3.0",
+                "php": "^8.1",
+                "stripe/stripe-php": "^16.2",
+                "symfony/console": "^6.0|^7.0",
+                "symfony/http-kernel": "^6.0|^7.0",
                 "symfony/polyfill-intl-icu": "^1.22.1"
             },
             "require-dev": {
                 "dompdf/dompdf": "^2.0",
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^7.0|^8.0",
+                "orchestra/testbench": "^8.18|^9.0",
                 "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^9.0"
+                "phpunit/phpunit": "^10.4"
             },
             "suggest": {
                 "dompdf/dompdf": "Required when generating and downloading invoice PDF's using Dompdf (^1.0.1|^2.0).",
                 "ext-intl": "Allows for more locales besides the default \"en\" when formatting money values."
             },
-            "time": "2023-11-21T15:08:38+00:00",
+            "time": "2024-12-10T16:15:29+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -2128,7 +2129,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-master": "14.x-dev"
+                    "dev-master": "15.x-dev"
                 }
             },
             "installation-source": "dist",
@@ -4040,17 +4041,17 @@
         },
         {
             "name": "orchestra/testbench",
-            "version": "v8.29.0",
-            "version_normalized": "8.29.0.0",
+            "version": "v8.30.0",
+            "version_normalized": "8.30.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench.git",
-                "reference": "71b16faeb9b5eef1ea26414474cb5d845b5d91ad"
+                "reference": "f07822b047b130d8d49563114d972191e4748eda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/71b16faeb9b5eef1ea26414474cb5d845b5d91ad",
-                "reference": "71b16faeb9b5eef1ea26414474cb5d845b5d91ad",
+                "url": "https://api.github.com/repos/orchestral/testbench/zipball/f07822b047b130d8d49563114d972191e4748eda",
+                "reference": "f07822b047b130d8d49563114d972191e4748eda",
                 "shasum": ""
             },
             "require": {
@@ -4058,15 +4059,15 @@
                 "fakerphp/faker": "^1.21",
                 "laravel/framework": "^10.48.25",
                 "mockery/mockery": "^1.5.1",
-                "orchestra/testbench-core": "^8.30",
-                "orchestra/workbench": "^8.13",
+                "orchestra/testbench-core": "^8.31",
+                "orchestra/workbench": "^8.15",
                 "php": "^8.1",
                 "phpunit/phpunit": "^9.6 || ^10.1",
                 "symfony/process": "^6.2",
                 "symfony/yaml": "^6.2",
                 "vlucas/phpdotenv": "^5.4.1"
             },
-            "time": "2024-12-01T11:05:50+00:00",
+            "time": "2024-12-16T00:02:21+00:00",
             "type": "library",
             "installation-source": "dist",
             "notification-url": "https://packagist.org/downloads/",
@@ -4092,23 +4093,23 @@
             ],
             "support": {
                 "issues": "https://github.com/orchestral/testbench/issues",
-                "source": "https://github.com/orchestral/testbench/tree/v8.29.0"
+                "source": "https://github.com/orchestral/testbench/tree/v8.30.0"
             },
             "install-path": "../orchestra/testbench"
         },
         {
             "name": "orchestra/testbench-core",
-            "version": "v8.31.0",
-            "version_normalized": "8.31.0.0",
+            "version": "v8.31.1",
+            "version_normalized": "8.31.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "c7ff1324cff57adde1b54d7f2aad56dd32ce2890"
+                "reference": "0047be7fa66d6752f03d1ad1fb5677b816d5c00b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/c7ff1324cff57adde1b54d7f2aad56dd32ce2890",
-                "reference": "c7ff1324cff57adde1b54d7f2aad56dd32ce2890",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/0047be7fa66d6752f03d1ad1fb5677b816d5c00b",
+                "reference": "0047be7fa66d6752f03d1ad1fb5677b816d5c00b",
                 "shasum": ""
             },
             "require": {
@@ -4152,7 +4153,7 @@
                 "symfony/yaml": "Required for Testbench CLI (^6.2).",
                 "vlucas/phpdotenv": "Required for Testbench CLI (^5.4.1)."
             },
-            "time": "2024-12-15T14:07:11+00:00",
+            "time": "2024-12-19T00:09:06+00:00",
             "bin": [
                 "testbench"
             ],
@@ -4195,17 +4196,17 @@
         },
         {
             "name": "orchestra/workbench",
-            "version": "v8.14.0",
-            "version_normalized": "8.14.0.0",
+            "version": "v8.15.2",
+            "version_normalized": "8.15.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/workbench.git",
-                "reference": "2b6ea81292ce3eabf50803019ac9e6589059ddf9"
+                "reference": "04902632fe1530a0233affc241a420e37e820eb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/workbench/zipball/2b6ea81292ce3eabf50803019ac9e6589059ddf9",
-                "reference": "2b6ea81292ce3eabf50803019ac9e6589059ddf9",
+                "url": "https://api.github.com/repos/orchestral/workbench/zipball/04902632fe1530a0233affc241a420e37e820eb3",
+                "reference": "04902632fe1530a0233affc241a420e37e820eb3",
                 "shasum": ""
             },
             "require": {
@@ -4215,7 +4216,7 @@
                 "laravel/tinker": "^2.8.2",
                 "nunomaduro/collision": "^6.4 || ^7.10",
                 "orchestra/canvas": "^8.11.9",
-                "orchestra/testbench-core": "^8.30",
+                "orchestra/testbench-core": "^8.31.1",
                 "php": "^8.1",
                 "symfony/polyfill-php83": "^1.31",
                 "symfony/process": "^6.2",
@@ -4225,12 +4226,13 @@
                 "laravel/pint": "^1.17",
                 "mockery/mockery": "^1.5.1",
                 "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^10.1"
+                "phpunit/phpunit": "^10.1",
+                "spatie/laravel-ray": "^1.39"
             },
             "suggest": {
                 "ext-pcntl": "Required to use all features of the console signal trapping."
             },
-            "time": "2024-12-10T10:56:05+00:00",
+            "time": "2024-12-19T00:31:47+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -4257,7 +4259,7 @@
             ],
             "support": {
                 "issues": "https://github.com/orchestral/workbench/issues",
-                "source": "https://github.com/orchestral/workbench/tree/v8.14.0"
+                "source": "https://github.com/orchestral/workbench/tree/v8.15.2"
             },
             "install-path": "../orchestra/workbench"
         },
@@ -5131,17 +5133,17 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.12",
-            "version_normalized": "1.12.12.0",
+            "version": "1.12.13",
+            "version_normalized": "1.12.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "b5ae1b88f471d3fd4ba1aa0046234b5ca3776dd0"
+                "reference": "9b469068840cfa031e1deaf2fa1886d00e20680f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/b5ae1b88f471d3fd4ba1aa0046234b5ca3776dd0",
-                "reference": "b5ae1b88f471d3fd4ba1aa0046234b5ca3776dd0",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9b469068840cfa031e1deaf2fa1886d00e20680f",
+                "reference": "9b469068840cfa031e1deaf2fa1886d00e20680f",
                 "shasum": ""
             },
             "require": {
@@ -5150,7 +5152,7 @@
             "conflict": {
                 "phpstan/phpstan-shim": "*"
             },
-            "time": "2024-11-28T22:13:23+00:00",
+            "time": "2024-12-17T17:00:20+00:00",
             "bin": [
                 "phpstan",
                 "phpstan.phar"
@@ -8049,17 +8051,17 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v10.21.0",
-            "version_normalized": "10.21.0.0",
+            "version": "v16.4.0",
+            "version_normalized": "16.4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "b4ab319731958077227fad1874a3671458c5d593"
+                "reference": "4aa86099f888db9368f5f778f29feb14e6294dfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/b4ab319731958077227fad1874a3671458c5d593",
-                "reference": "b4ab319731958077227fad1874a3671458c5d593",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/4aa86099f888db9368f5f778f29feb14e6294dfb",
+                "reference": "4aa86099f888db9368f5f778f29feb14e6294dfb",
                 "shasum": ""
             },
             "require": {
@@ -8070,12 +8072,10 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "3.5.0",
-                "php-coveralls/php-coveralls": "^2.5",
                 "phpstan/phpstan": "^1.2",
-                "phpunit/phpunit": "^5.7 || ^9.0",
-                "squizlabs/php_codesniffer": "^3.3"
+                "phpunit/phpunit": "^5.7 || ^9.0"
             },
-            "time": "2023-08-11T00:23:24+00:00",
+            "time": "2024-12-18T23:42:15+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -8107,7 +8107,7 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v10.21.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v16.4.0"
             },
             "install-path": "../stripe/stripe-php"
         },

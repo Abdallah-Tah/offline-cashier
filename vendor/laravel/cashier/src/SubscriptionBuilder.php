@@ -33,11 +33,11 @@ class SubscriptionBuilder
     protected $owner;
 
     /**
-     * The name of the subscription.
+     * The type of the subscription.
      *
      * @var string
      */
-    protected $name;
+    protected $type;
 
     /**
      * The prices the customer is being subscribed to.
@@ -78,13 +78,13 @@ class SubscriptionBuilder
      * Create a new subscription builder instance.
      *
      * @param  mixed  $owner
-     * @param  string  $name
+     * @param  string  $type
      * @param  string|string[]|array[]  $prices
      * @return void
      */
-    public function __construct($owner, $name, $prices = [])
+    public function __construct($owner, $type, $prices = [])
     {
-        $this->name = $name;
+        $this->type = $type;
         $this->owner = $owner;
 
         foreach ((array) $prices as $price) {
@@ -304,7 +304,7 @@ class SubscriptionBuilder
 
         /** @var \Laravel\Cashier\Subscription $subscription */
         $subscription = $this->owner->subscriptions()->create([
-            'name' => $this->name,
+            'type' => $this->type,
             'stripe_id' => $stripeSubscription->id,
             'stripe_status' => $stripeSubscription->status,
             'stripe_price' => $isSinglePrice ? $firstItem->price->id : null,
@@ -351,13 +351,20 @@ class SubscriptionBuilder
             $trialEnd = null;
         }
 
+        $billingCycleAnchor = $trialEnd === null ? $this->billingCycleAnchor : null;
+
         $payload = array_filter([
             'line_items' => Collection::make($this->items)->values()->all(),
             'mode' => 'subscription',
             'subscription_data' => array_filter([
                 'default_tax_rates' => $this->getTaxRatesForPayload(),
                 'trial_end' => $trialEnd ? $trialEnd->getTimestamp() : null,
-                'metadata' => array_merge($this->metadata, ['name' => $this->name]),
+                'billing_cycle_anchor' => $billingCycleAnchor,
+                'proration_behavior' => $billingCycleAnchor ? $this->prorateBehavior() : null,
+                'metadata' => array_merge($this->metadata, [
+                    'name' => $this->type,
+                    'type' => $this->type,
+                ]),
             ]),
         ]);
 

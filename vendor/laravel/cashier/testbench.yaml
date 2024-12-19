@@ -1,0 +1,11 @@
+providers:
+  - Laravel\Cashier\CashierServiceProvider
+
+migrations:
+  - database/migrations
+
+workbench:
+  build:
+    - create-sqlite-db
+    - db:wipe
+    - migrate:fresh

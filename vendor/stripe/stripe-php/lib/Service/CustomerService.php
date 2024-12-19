@@ -4,6 +4,10 @@
 
 namespace Stripe\Service;
 
+/**
+ * @phpstan-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
+ * @psalm-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
+ */
 class CustomerService extends \Stripe\Service\AbstractService
 {
     /**
@@ -11,7 +15,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * date, with the most recent customers appearing first.
      *
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -28,7 +32,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -45,7 +49,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -61,7 +65,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -77,7 +81,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -93,7 +97,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -108,7 +112,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * Creates a new customer object.
      *
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -125,7 +129,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -145,7 +149,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -167,7 +171,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -179,11 +183,11 @@ class CustomerService extends \Stripe\Service\AbstractService
     }
 
     /**
-     * Creates a new <code>TaxID</code> object for a customer.
+     * Creates a new <code>tax_id</code> object for a customer.
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -200,7 +204,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -216,7 +220,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -233,7 +237,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -245,12 +249,12 @@ class CustomerService extends \Stripe\Service\AbstractService
     }
 
     /**
-     * Deletes an existing <code>TaxID</code> object.
+     * Deletes an existing <code>tax_id</code> object.
      *
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -266,7 +270,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -284,7 +288,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -300,7 +304,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -318,7 +322,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -335,7 +339,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -352,7 +356,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -364,12 +368,12 @@ class CustomerService extends \Stripe\Service\AbstractService
     }
 
     /**
-     * Retrieves the <code>TaxID</code> object with the given identifier.
+     * Retrieves the <code>tax_id</code> object with the given identifier.
      *
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -389,7 +393,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * during outages. Search functionality is not available to merchants in India.
      *
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -417,7 +421,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -435,7 +439,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -451,7 +455,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @param string $parentId
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -468,7 +472,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -485,7 +489,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      * @param string $parentId
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *

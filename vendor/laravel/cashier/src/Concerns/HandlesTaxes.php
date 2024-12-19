@@ -28,7 +28,7 @@ trait HandlesTaxes
     public $collectTaxIds = false;
 
     /**
-     * Set the The IP address of the customer used to determine the tax location.
+     * Set the IP address of the customer used to determine the tax location.
      *
      * @return $this
      */

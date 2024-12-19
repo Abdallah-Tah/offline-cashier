@@ -7,6 +7,8 @@ use Illuminate\Support\Arr;
 use function Orchestra\Testbench\join_paths;
 
 /**
+ * @internal
+ *
  * @phpstan-type TStubFiles array{
  *   config: ?string,
  *   'config.basic': ?string,

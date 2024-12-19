@@ -4,13 +4,17 @@
 
 namespace Stripe\Service;
 
+/**
+ * @phpstan-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
+ * @psalm-import-type RequestOptionsArray from \Stripe\Util\RequestOptions
+ */
 class SetupIntentService extends \Stripe\Service\AbstractService
 {
     /**
      * Returns a list of SetupIntents.
      *
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -22,16 +26,18 @@ class SetupIntentService extends \Stripe\Service\AbstractService
     }
 
     /**
-     * A SetupIntent object can be canceled when it is in one of these statuses:
+     * You can cancel a SetupIntent object when it’s in one of these statuses:
      * <code>requires_payment_method</code>, <code>requires_confirmation</code>, or
      * <code>requires_action</code>.
      *
-     * Once canceled, setup is abandoned and any operations on the SetupIntent will
-     * fail with an error.
+     * After you cancel it, setup is abandoned and any operations on the SetupIntent
+     * fail with an error. You can’t cancel the SetupIntent for a Checkout Session. <a
+     * href="/docs/api/checkout/sessions/expire">Expire the Checkout Session</a>
+     * instead.
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -57,7 +63,7 @@ class SetupIntentService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -71,12 +77,12 @@ class SetupIntentService extends \Stripe\Service\AbstractService
     /**
      * Creates a SetupIntent object.
      *
-     * After the SetupIntent is created, attach a payment method and <a
-     * href="/docs/api/setup_intents/confirm">confirm</a> to collect any required
+     * After you create the SetupIntent, attach a payment method and <a
+     * href="/docs/api/setup_intents/confirm">confirm</a> it to collect any required
      * permissions to charge the payment method later.
      *
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -99,7 +105,7 @@ class SetupIntentService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -115,7 +121,7 @@ class SetupIntentService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
@@ -131,7 +137,7 @@ class SetupIntentService extends \Stripe\Service\AbstractService
      *
      * @param string $id
      * @param null|array $params
-     * @param null|array|\Stripe\Util\RequestOptions $opts
+     * @param null|RequestOptionsArray|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
