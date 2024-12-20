@@ -53,7 +53,7 @@ class OfflineCashierServiceProvider extends ServiceProvider
         // Publish migrations separately with a dedicated tag
         $this->publishes([
             __DIR__.'/../database/migrations' => database_path('migrations'),
-        ], 'offline-cashier-migrations');
+        ], 'migrations');
     }
 
     protected function bootEvents(): void
