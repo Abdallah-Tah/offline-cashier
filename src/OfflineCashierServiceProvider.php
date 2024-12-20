@@ -47,7 +47,13 @@ class OfflineCashierServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/offline-cashier.php' => config_path('offline-cashier.php'),
             __DIR__.'/../resources/views' => resource_path('views/vendor/offline-cashier'),
+            __DIR__.'/../database/migrations' => database_path('migrations'),
         ]);
+
+        // Publish migrations separately with a dedicated tag
+        $this->publishes([
+            __DIR__.'/../database/migrations' => database_path('migrations'),
+        ], 'offline-cashier-migrations');
     }
 
     protected function bootEvents(): void
