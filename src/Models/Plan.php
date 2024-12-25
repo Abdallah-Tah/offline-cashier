@@ -2,9 +2,11 @@
 
 namespace AMohamed\OfflineCashier\Models;
 
+use App\Models\Feature;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use AMohamed\OfflineCashier\Tests\Database\Factories\PlanFactory;
 
 class Plan extends Model
@@ -29,6 +31,11 @@ class Plan extends Model
     public function subscriptions(): HasMany
     {
         return $this->hasMany(config('offline-cashier.models.subscription'));
+    }
+
+    public function features(): BelongsToMany
+    {
+        return $this->belongsToMany(Feature::class);
     }
 
     protected static function newFactory()
