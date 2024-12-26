@@ -2,7 +2,7 @@
 
 namespace AMohamed\OfflineCashier\Tests\Database\Factories;
 
-use AMohamed\OfflineCashier\Tests\User;
+use AMohamed\OfflineCashier\Tests\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

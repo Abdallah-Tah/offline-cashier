@@ -2,50 +2,36 @@
 
 namespace AMohamed\OfflineCashier\Tests;
 
-use AMohamed\OfflineCashier\OfflineCashierServiceProvider;
-use Orchestra\Testbench\TestCase as Orchestra;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-class TestCase extends Orchestra
+abstract class TestCase extends OrchestraTestCase
 {
-    use RefreshDatabase;
-
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom([
-            '--database' => 'testing',
-            '--path' => [
-                __DIR__ . '/Database/Migrations',
-                __DIR__ . '/../database/migrations',
-            ],
-        ]);
+        // Run package database migrations
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
-    protected function getPackageProviders($app): array
+    protected function getPackageProviders($app)
     {
         return [
-            OfflineCashierServiceProvider::class,
+            \AMohamed\OfflineCashier\OfflineCashierServiceProvider::class,
         ];
     }
 
-    protected function getEnvironmentSetUp($app): void
+    protected function getEnvironmentSetUp($app)
     {
+        // Use SQLite in-memory database for testing
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing', [
             'driver' => 'sqlite',
             'database' => ':memory:',
             'prefix' => '',
-            'foreign_key_constraints' => true,
         ]);
 
-        $app['config']->set('offline-cashier.models.user', User::class);
-    }
-
-    protected function defineDatabaseMigrations()
-    {
-        $this->loadMigrationsFrom(__DIR__ . '/Database/Migrations');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        // Set the user model for testing
+        $app['config']->set('offline-cashier.models.user', \AMohamed\OfflineCashier\Tests\Models\User::class);
     }
 }

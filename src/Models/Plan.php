@@ -2,8 +2,8 @@
 
 namespace AMohamed\OfflineCashier\Models;
 
-use App\Models\Feature;
 use Illuminate\Database\Eloquent\Model;
+use AMohamed\OfflineCashier\Models\Feature;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -19,12 +19,10 @@ class Plan extends Model
         'price',
         'billing_interval',
         'trial_period_days',
-        'features',
         'stripe_price_id',
     ];
 
     protected $casts = [
-        'features' => 'array',
         'price' => 'decimal:2',
     ];
 
@@ -35,11 +33,16 @@ class Plan extends Model
 
     public function features(): BelongsToMany
     {
-        return $this->belongsToMany(Feature::class);
+        return $this->belongsToMany(
+            Feature::class,
+            'feature_plan', // Pivot table
+            'plan_id',      // Foreign key for the plan
+            'feature_id'    // Foreign key for the feature
+        );
     }
 
     protected static function newFactory()
     {
         return PlanFactory::new();
     }
-} 
+}

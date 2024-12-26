@@ -2,8 +2,9 @@
 
 namespace AMohamed\OfflineCashier\Tests\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use AMohamed\OfflineCashier\Models\Plan;
+use AMohamed\OfflineCashier\Models\Feature;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PlanFactory extends Factory
 {
@@ -17,11 +18,19 @@ class PlanFactory extends Factory
             'price' => $this->faker->randomFloat(2, 10, 100),
             'billing_interval' => $this->faker->randomElement(['month', 'year']),
             'trial_period_days' => $this->faker->optional()->numberBetween(7, 30),
-            'features' => ['feature1', 'feature2', 'feature3'],
             'stripe_price_id' => $this->faker->optional()->uuid,
         ];
     }
 
+    public function configure()
+    {
+        return $this->afterCreating(function (Plan $plan) {
+            \DB::table('feature_plan')->where('plan_id', $plan->id)->delete(); 
+            $features = Feature::factory()->count(3)->create();
+            $plan->features()->sync($features->pluck('id')); 
+        });
+    }
+    
     public function withTrial(int $days = 14): self
     {
         return $this->state([
@@ -44,4 +53,4 @@ class PlanFactory extends Factory
             'price' => $price,
         ]);
     }
-} 
+}

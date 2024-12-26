@@ -5,7 +5,9 @@ use AMohamed\OfflineCashier\Models\Invoice;
 use AMohamed\OfflineCashier\Events\PaymentReceived;
 use AMohamed\OfflineCashier\Services\PaymentService;
 use AMohamed\OfflineCashier\Events\SubscriptionCreated;
+use AMohamed\OfflineCashier\Models\FeaturePlan;
 use AMohamed\OfflineCashier\Services\SubscriptionService;
+
 
 test('complete subscription flow', function () {
     Event::fake();
@@ -108,3 +110,14 @@ test('subscription can be expired', function () {
     $subscription->expire();
     expect($subscription->status)->toBe('expired');
 });
+
+test('plan has features', function () {
+    $plan = createPlan();
+
+    dump('Attached features:', $plan->features->toArray());
+    dump('Pivot table data:', \DB::table('feature_plan')->get());
+
+    expect($plan->features)->toHaveCount(3); // Verify 3 features are attached
+    expect($plan->features->first()->name)->not->toBeNull(); // Verify feature names
+});
+
