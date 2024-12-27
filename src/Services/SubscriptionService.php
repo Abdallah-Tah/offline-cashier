@@ -28,20 +28,13 @@ class SubscriptionService implements SubscriptionManager
             'plan_id' => $plan->id,
             'status' => $plan->trial_period_days ? 'trial' : 'pending',
             'payment_method' => $paymentMethod,
-            'trial_ends_at' => $plan->trial_period_days 
-                ? Carbon::now()->addDays($plan->trial_period_days) 
+            'trial_ends_at' => $plan->trial_period_days
+                ? Carbon::now()->addDays($plan->trial_period_days)
                 : null,
         ]);
 
         $subscription->user()->associate($user);
         $subscription->save();
-
-        $features = $plan->features; 
-
-        $subscription->features()->sync($features->pluck('id')->toArray());
-
-        // Hook for customization
-        $this->customizeFeatures($subscription, $features);
 
         event(new SubscriptionCreated($subscription));
 
@@ -58,7 +51,7 @@ class SubscriptionService implements SubscriptionManager
     public function cancel(Subscription $subscription, bool $immediately = false): bool
     {
         $subscription->status = 'cancelled';
-        
+
         if ($immediately) {
             $subscription->ends_at = Carbon::now();
         }
@@ -132,8 +125,7 @@ class SubscriptionService implements SubscriptionManager
      */
     public function customizeFeatures(Subscription $subscription, $features)
     {
-        // Developers can override this method to customize feature assignment
-        $subscription->features()->sync($features->pluck('id')->toArray());
-        return $subscription;
+        // This method can be left empty or repurposed
+        // if customization is needed for specific business logic.
     }
-} 
+}

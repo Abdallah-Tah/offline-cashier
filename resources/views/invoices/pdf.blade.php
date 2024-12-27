@@ -100,7 +100,7 @@
             <p><strong>Date:</strong> {{ $invoice->created_at->format('F d, Y') }}</p>
             <p><strong>Due Date:</strong> {{ $invoice->due_date->format('F d, Y') }}</p>
             <p><strong>Bill To:</strong> {{ $user->name }} ({{ $user->email }})</p>
-            <p><strong>Bill From:</strong> {{ config('app.name') }}</p>
+            <p><strong>Bill From:</strong> Your Company Name</p>
         </div>
         <table>
             <thead>
@@ -119,7 +119,7 @@
                                 @if(isset($subscription->plan->features))
                                     <p><strong>Features:</strong> {{ $subscription->plan->features }}</p>
                                 @endif
-                                <p><strong>Duration:</strong> {{ $subscription->plan->duration ?? 'N/A' }} months</p>
+                                <p><strong>Duration:</strong> {{ $subscription->plan->duration() ?? 'N/A' }}</p>
                                 <p><strong>Billing Cycle:</strong> {{ $subscription->plan->billing_cycle ?? 'N/A' }}</p>
                             </div>
                         </td>
