@@ -103,3 +103,7 @@ class SubscriptionComponent extends Component
 ![Subscription Process](examples/image.png)
 
 This image illustrates the subscription creation process and feature assignment.
+
+## Project Example
+
+For a practical example of how to use the OfflineCashier package, check out this [GitHub repository](https://github.com/Abdallah-Tah/cashier). It demonstrates the implementation of the package in a real-world project.
