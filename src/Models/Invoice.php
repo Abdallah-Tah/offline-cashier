@@ -117,4 +117,12 @@ class Invoice extends Model
         
         return $prefix . str_pad($nextId, 6, '0', STR_PAD_LEFT);
     }
+
+    /**
+     * Get the expiration date of the invoice.
+     */
+    public function getExpiresAtAttribute()
+    {
+        return $this->created_at->addDays($this->payment->subscription->plan->billing_interval == 'month' ? 30 : 365);
+    }
 } 

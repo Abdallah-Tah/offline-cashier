@@ -72,6 +72,15 @@ class Plan extends Model
             'feature_id'   
         );
     }
+    /**
+     * Get the features associated with this plan.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getFeaturesAttribute()
+    {
+        return $this->features()->get();
+    }
 
     /**
      * Get the duration of the plan in a human readable format.
