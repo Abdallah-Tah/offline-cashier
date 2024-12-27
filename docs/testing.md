@@ -295,6 +295,36 @@ test('it sends notifications', function () {
 });
 ```
 
+## Testing Feature Assignment
+
+To test the automatic and customizable feature assignment in subscriptions, you can create test cases that verify the correct features are assigned based on the selected plan.
+
+### Example Test
+
+```php
+use AMohamed\OfflineCashier\Models\Plan;
+use AMohamed\OfflineCashier\Services\SubscriptionService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class FeatureAssignmentTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function testFeatureAssignment()
+    {
+        $user = User::factory()->create();
+        $plan = Plan::factory()->create(['features' => ['feature1', 'feature2']]);
+
+        $subscriptionService = new SubscriptionService();
+        $subscription = $subscriptionService->create($user, $plan, 'credit_card');
+
+        $this->assertEquals(['feature1', 'feature2'], $subscription->features->pluck('name')->toArray());
+    }
+}
+```
+
+This test ensures that the features associated with the plan are correctly assigned to the subscription.
+
 ## Running Tests
 
 ### Running All Tests

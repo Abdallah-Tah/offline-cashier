@@ -61,6 +61,8 @@ COMPANY_EMAIL="your@email.com"
 COMPANY_VAT="Your VAT Number"
 ```
 
+3. The package includes automatic feature assignment for subscriptions, which is part of the core functionality.
+
 ## Configuration
 
 ### Models

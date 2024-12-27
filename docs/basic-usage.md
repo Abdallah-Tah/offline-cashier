@@ -98,6 +98,22 @@ $activeSubscription = $user->activeSubscription();
 $allSubscriptions = $user->subscriptions;
 ```
 
+### Automatic and Customizable Feature Assignment
+
+When creating a subscription, features associated with the selected plan are automatically assigned to the subscription. This ensures that each subscription has the features defined by its plan.
+
+Developers can customize this behavior by overriding the `customizeFeatures` method in the `SubscriptionService`. This allows for flexibility in feature assignment, enabling developers to modify or extend the default logic as needed.
+
+```php
+use AMohamed\OfflineCashier\Services\SubscriptionService;
+
+$subscriptionService = new SubscriptionService();
+$subscription = $subscriptionService->create($user, $plan, 'credit_card');
+
+// Customize feature assignment
+$subscriptionService->customizeFeatures($subscription, $plan->features);
+```
+
 ## Handling Payments
 
 ### Creating Payments

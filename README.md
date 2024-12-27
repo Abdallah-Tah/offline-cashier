@@ -12,6 +12,8 @@ OfflineCashier is a Laravel package that provides subscription and payment manag
 - Stripe Integration
 - Customizable Views
 - Event System
+- Automatic Feature Assignment: Automatically assigns features to subscriptions based on the selected plan.
+- Customizable Feature Assignment: Provides a hook for developers to customize or override the default feature assignment logic.
 
 ## Table of Contents
 

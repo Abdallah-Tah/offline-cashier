@@ -141,6 +141,12 @@ Configure PDF generation settings:
 ],
 ```
 
+### Feature Assignment Configuration
+
+The package provides automatic feature assignment for subscriptions based on the selected plan. You can customize this behavior by overriding the `customizeFeatures` method in the `SubscriptionService`.
+
+To enable or disable automatic feature assignment, or to customize the logic, modify the `config/offline-cashier.php` file as needed.
+
 ## Environment Variables
 
 Add these variables to your `.env` file:

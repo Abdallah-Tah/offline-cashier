@@ -52,6 +52,20 @@ class PaymentReceived
 }
 ```
 
+### Feature Assignment Events
+
+The package allows for customization of feature assignment when a subscription is created. While there are no specific events for feature assignment, you can listen to the `SubscriptionCreated` event to perform actions related to feature assignment.
+
+```php
+use AMohamed\OfflineCashier\Events\SubscriptionCreated;
+
+Event::listen(SubscriptionCreated::class, function ($event) {
+    // Customize feature assignment or perform additional actions
+    $subscription = $event->subscription;
+    // Custom logic here
+});
+```
+
 ## Registering Event Listeners
 
 Register your listeners in your application's `EventServiceProvider`:
